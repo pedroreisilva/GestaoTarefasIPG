@@ -5,6 +5,10 @@
     <UserSecretsId>aspnet-GestaoTarefasIPG-0B382A96-3218-4904-A8D6-CD12AB6F3185</UserSecretsId>
   </PropertyGroup>
 
+  <ItemGroup>
+    <None Include="wwwroot\js\site.js" />
+  </ItemGroup>
+
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="3.0.0" />
