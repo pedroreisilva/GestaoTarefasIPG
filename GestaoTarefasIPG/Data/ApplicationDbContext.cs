@@ -14,5 +14,6 @@ namespace GestaoTarefasIPG.Data
         {
         }
         public DbSet<GestaoTarefasIPG.Models.Cargos> Cargos { get; set; }
+        public DbSet<GestaoTarefasIPG.Models.Departamentos> Departamentos { get; set; }
     }
 }
