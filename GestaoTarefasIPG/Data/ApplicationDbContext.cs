@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using GestaoTarefasIPG.Models;
 
 namespace GestaoTarefasIPG.Data
 {
@@ -12,5 +13,6 @@ namespace GestaoTarefasIPG.Data
             : base(options)
         {
         }
+        public DbSet<GestaoTarefasIPG.Models.Cargos> Cargos { get; set; }
     }
 }
