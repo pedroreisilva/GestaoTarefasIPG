@@ -9,6 +9,7 @@ namespace GestaoTarefasIPG.Models
     public class Cargos
     {
         [Required]
+        [Key]
         public int idCargo { get; set; }
 
         [Required]
