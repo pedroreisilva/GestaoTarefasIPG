@@ -1,7 +1,36 @@
-﻿
+﻿@model IEnumerable<GestaoTarefasIPG.Models.Departamentos>
+
 @{
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<h4>Departamentos</h4>
 
+<p>
+    <a asp-action="Create">Criar Novo</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.NomeDepartamento)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NomeDepartamento)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.idDepartamento">Editar</a> |
+                    <a asp-action="Details" asp-route-id="@item.idDepartamento">Detalhes</a> |
+                    <a asp-action="Delete" asp-route-id="@item.idDepartamento">Apagar</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
