@@ -12,7 +12,8 @@ namespace GestaoTarefasIPG.Models
         [Key]
         public int idCargo { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Introduza o nome")]
+        [StringLength(30)]
         public String NomeCargo { get; set; }
 
     }
