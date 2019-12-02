@@ -1,14 +1,12 @@
 ﻿@model GestaoTarefasIPG.Models.Cargos
 
 @{
-    ViewData["Title"] = "Delete";
+    ViewData["Title"] = "Apagar";
 }
 
-<h1>Apagar Cargo</h1>
 
-<h3>Tem a certeza que pretende eliminar ?</h3>
+<h5>Tem a certeza que pretende eliminar ?</h5>
 <div>
-    <h4>Cargos</h4>
     <hr />
     <dl class="row">
         <dt class = "col-sm-2">
@@ -21,7 +19,7 @@
     
     <form asp-action="Delete">
         <input type="hidden" asp-for="idCargo" />
-        <input type="submit" value="Delete" class="btn btn-danger" /> |
-        <a asp-action="Index">Back to List</a>
+        <input type="submit" value="Apagar" class="btn btn-danger" /> |
+        <a asp-action="Index">Voltar à lista</a>
     </form>
 </div>
