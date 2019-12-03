@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace GestaoTarefasIPG.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20191202104304_initial")]
-    partial class initial
+    [Migration("20191203160918_inital")]
+    partial class inital
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -30,7 +30,8 @@ namespace GestaoTarefasIPG.Data.Migrations
 
                     b.Property<string>("NomeCargo")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(30)")
+                        .HasMaxLength(30);
 
                     b.HasKey("idCargo");
 
@@ -51,6 +52,22 @@ namespace GestaoTarefasIPG.Data.Migrations
                     b.HasKey("idDepartamento");
 
                     b.ToTable("Departamentos");
+                });
+
+            modelBuilder.Entity("GestaoTarefasIPG.Models.Divisoes", b =>
+                {
+                    b.Property<int>("idDivisao")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("NumDivisao")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("idDivisao");
+
+                    b.ToTable("Divisoes");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>

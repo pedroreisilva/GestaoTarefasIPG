@@ -36,8 +36,6 @@ namespace GestaoTarefasIPG
             services.AddControllersWithViews();
             services.AddRazorPages();
 
-            services.AddDbContext<DivisoesContext>(options =>
-                    options.UseSqlServer(Configuration.GetConnectionString("DivisoesContext")));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

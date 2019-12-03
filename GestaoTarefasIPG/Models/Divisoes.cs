@@ -10,7 +10,9 @@ namespace GestaoTarefasIPG.Models
     public class Divisoes
     {
         [Key]
-        public int IdDivisao { get; set; }
+        [Required]
+        public int idDivisao { get; set; }
+
         [Required]
         public String NumDivisao { get; set; }
     }

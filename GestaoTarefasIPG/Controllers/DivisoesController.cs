@@ -5,15 +5,16 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using GestaoTarefasIPG.Data;
 using GestaoTarefasIPG.Models;
 
 namespace GestaoTarefasIPG.Controllers
 {
     public class DivisoesController : Controller
     {
-        private readonly DivisoesContext _context;
+        private readonly ApplicationDbContext _context;
 
-        public DivisoesController(DivisoesContext context)
+        public DivisoesController(ApplicationDbContext context)
         {
             _context = context;
         }
@@ -33,7 +34,7 @@ namespace GestaoTarefasIPG.Controllers
             }
 
             var divisoes = await _context.Divisoes
-                .FirstOrDefaultAsync(m => m.IdDivisao == id);
+                .FirstOrDefaultAsync(m => m.idDivisao == id);
             if (divisoes == null)
             {
                 return NotFound();
@@ -53,7 +54,7 @@ namespace GestaoTarefasIPG.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("IdDivisao,NumDivisao")] Divisoes divisoes)
+        public async Task<IActionResult> Create([Bind("idDivisao,NumDivisao")] Divisoes divisoes)
         {
             if (ModelState.IsValid)
             {
@@ -85,9 +86,9 @@ namespace GestaoTarefasIPG.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("IdDivisao,NumDivisao")] Divisoes divisoes)
+        public async Task<IActionResult> Edit(int id, [Bind("idDivisao,NumDivisao")] Divisoes divisoes)
         {
-            if (id != divisoes.IdDivisao)
+            if (id != divisoes.idDivisao)
             {
                 return NotFound();
             }
@@ -101,7 +102,7 @@ namespace GestaoTarefasIPG.Controllers
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!DivisoesExists(divisoes.IdDivisao))
+                    if (!DivisoesExists(divisoes.idDivisao))
                     {
                         return NotFound();
                     }
@@ -124,7 +125,7 @@ namespace GestaoTarefasIPG.Controllers
             }
 
             var divisoes = await _context.Divisoes
-                .FirstOrDefaultAsync(m => m.IdDivisao == id);
+                .FirstOrDefaultAsync(m => m.idDivisao == id);
             if (divisoes == null)
             {
                 return NotFound();
@@ -146,7 +147,7 @@ namespace GestaoTarefasIPG.Controllers
 
         private bool DivisoesExists(int id)
         {
-            return _context.Divisoes.Any(e => e.IdDivisao == id);
+            return _context.Divisoes.Any(e => e.idDivisao == id);
         }
     }
 }
