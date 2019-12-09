@@ -1,31 +1,29 @@
 ﻿@model GestaoTarefasIPG.Models.Cargos
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Criar";
 }
 
-<h1>Create</h1>
-
-<h4>Cargos</h4>
+<h4>Criar Cargo</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="NomeCargo" class="control-label"></label>
+                <label asp-for="NomeCargo" class="control-label">Nome do Cargo</label>
                 <input asp-for="NomeCargo" class="form-control" />
                 <span asp-validation-for="NomeCargo" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+                <input type="submit" value="Criar" class="btn btn-primary" />
             </div>
         </form>
     </div>
 </div>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Index">Voltar à lista</a>
 </div>
 
 @section Scripts {
