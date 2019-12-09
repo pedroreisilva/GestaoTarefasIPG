@@ -1,10 +1,10 @@
 ﻿@model GestaoTarefasIPG.Models.Divisoes
 
 @{
-    ViewData["Title"] = "Criar";
+    ViewData["Title"] = "Create";
 }
 
-<h4>Criar Divisao</h4>
+<h1>Create</h1>
 
 <h4>Divisoes</h4>
 <hr />
@@ -25,5 +25,9 @@
 </div>
 
 <div>
-    <a asp-action="Index">Voltar à lista</a>
+    <a asp-action="Index">Back to List</a>
 </div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

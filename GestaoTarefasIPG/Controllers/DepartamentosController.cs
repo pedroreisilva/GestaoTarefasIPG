@@ -5,26 +5,26 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using GestaoTarefasIPG.Data;
 using GestaoTarefasIPG.Models;
 
-namespace GestaoTarefasIPG
+namespace GestaoTarefasIPG.Controllers
 {
     public class DepartamentosController : Controller
     {
-        private readonly ApplicationDbContext _context;
+        private readonly GestaoTarefasIPGContext _context;
 
-        public DepartamentosController(ApplicationDbContext context)
+        public DepartamentosController(GestaoTarefasIPGContext context)
         {
             _context = context;
         }
 
-        // GET
+        // GET: Departamentos
         public async Task<IActionResult> Index()
         {
             return View(await _context.Departamentos.ToListAsync());
         }
 
+        // GET: Departamentos/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -80,14 +80,14 @@ namespace GestaoTarefasIPG
             return View(departamentos);
         }
 
-        // POST:Departamentos/Edit
+        // POST: Departamentos/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("idDepartamento,NomeDepartamento")] Departamentos departamento)
+        public async Task<IActionResult> Edit(int id, [Bind("idDepartamento,NomeDepartamento")] Departamentos departamentos)
         {
-            if (id != departamento.idDepartamento)
+            if (id != departamentos.idDepartamento)
             {
                 return NotFound();
             }
@@ -96,12 +96,12 @@ namespace GestaoTarefasIPG
             {
                 try
                 {
-                    _context.Update(departamento);
+                    _context.Update(departamentos);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!DepartamentoExists(departamento.idDepartamento))
+                    if (!DepartamentosExists(departamentos.idDepartamento))
                     {
                         return NotFound();
                     }
@@ -112,15 +112,10 @@ namespace GestaoTarefasIPG
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(departamento);
+            return View(departamentos);
         }
 
-        private bool DepartamentoExists(int idDepartamento)
-        {
-            throw new NotImplementedException();
-        }
-
-        // GET: Departamentos/Delete
+        // GET: Departamentos/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -128,23 +123,23 @@ namespace GestaoTarefasIPG
                 return NotFound();
             }
 
-            var departamento = await _context.Departamentos
+            var departamentos = await _context.Departamentos
                 .FirstOrDefaultAsync(m => m.idDepartamento == id);
-            if (departamento == null)
+            if (departamentos == null)
             {
                 return NotFound();
             }
 
-            return View(departamento);
+            return View(departamentos);
         }
 
-        // POST: Departamentos/Delete
+        // POST: Departamentos/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var departamento = await _context.Departamentos.FindAsync(id);
-            _context.Departamentos.Remove(departamento);
+            var departamentos = await _context.Departamentos.FindAsync(id);
+            _context.Departamentos.Remove(departamentos);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }

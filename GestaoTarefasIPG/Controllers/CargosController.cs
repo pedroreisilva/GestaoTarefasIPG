@@ -5,16 +5,15 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using GestaoTarefasIPG.Data;
 using GestaoTarefasIPG.Models;
 
-namespace GestaoTarefasIPG
+namespace GestaoTarefasIPG.Controllers
 {
     public class CargosController : Controller
     {
-        private readonly ApplicationDbContext _context;
+        private readonly GestaoTarefasIPGContext _context;
 
-        public CargosController(ApplicationDbContext context)
+        public CargosController(GestaoTarefasIPGContext context)
         {
             _context = context;
         }
