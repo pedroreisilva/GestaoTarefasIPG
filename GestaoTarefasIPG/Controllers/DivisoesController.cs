@@ -11,6 +11,10 @@ namespace GestaoTarefasIPG.Controllers
 {
     public class DivisoesController : Controller
     {
+        private int NUMBER_PAGES_BEFORE_AND_AFTER = 2;
+        private decimal NUMBER_FUNC_PER_PAGE = 2;
+        private int FUNC_PER_PAGE = 2;
+
         private readonly GestaoTarefasIPGContext _context;
 
         public DivisoesController(GestaoTarefasIPGContext context)
@@ -18,11 +22,28 @@ namespace GestaoTarefasIPG.Controllers
             _context = context;
         }
 
-        // GET: Divisoes
-        public async Task<IActionResult> Index()
+        // GET: Divisoe
+        public async Task<IActionResult> Index(int page =1)
         {
-            return View(await _context.Divisoes.ToListAsync());
+            decimal numberDivisoes = _context.Divisoes.Count();
+            PaginationViewModel vm = new PaginationViewModel{
+
+
+                Divisoes = _context.Divisoes.OrderBy(p => p.NumDivisao).Skip((page - 1)* FUNC_PER_PAGE).Take(FUNC_PER_PAGE),
+                CurrentPage = page,
+                FirstPageShow = Math.Max(1,page - NUMBER_PAGES_BEFORE_AND_AFTER),
+                TotalPages = (int)Math.Ceiling(numberDivisoes / NUMBER_FUNC_PER_PAGE)
+            };
+            vm.LastPageShow = Math.Min(vm.TotalPages, page + NUMBER_PAGES_BEFORE_AND_AFTER);
+
+            return View(vm);
         }
+
+
+
+
+
+
 
         // GET: Divisoes/Details/5
         public async Task<IActionResult> Details(int? id)
