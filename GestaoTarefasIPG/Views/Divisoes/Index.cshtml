@@ -1,5 +1,6 @@
-﻿@model IEnumerable<GestaoTarefasIPG.Models.Divisoes>
+﻿
 
+@model GestaoTarefasIPG.Models.PaginationViewModel;
 @{
     ViewData["Title"] = "Index";
 }
@@ -7,30 +8,43 @@
 <h4>Divisões</h4>
 <br />
 <p>
-    <a asp-action="Create"><input type="submit" value="Criar Novo" class="btn btn-danger" /></a>
+    <a asp-action="Create">Criar Novo</a>
 </p>
 <table class="table">
     <thead>
         <tr>
             <th>
-               Número da divisão
+               Divisões
             </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
-        @foreach (var item in Model)
+        @foreach (var item in Model.Divisoes)
         {
             <tr>
                 <td>
                     @Html.DisplayFor(modelItem => item.NumDivisao)
                 </td>
                 <td>
-                    <a asp-action="Edit" asp-route-id="@item.idDivisao"><input type="submit" value="Editar" class="btn btn-danger" /></a> |
-                    <a asp-action="Details" asp-route-id="@item.idDivisao"><input type="submit" value="Detalhes" class="btn btn-danger" /></a> |
-                    <a asp-action="Delete" asp-route-id="@item.idDivisao"><input type="submit" value="Apagar" class="btn btn-danger" /></a>
+                    <a asp-action="Edit" asp-route-id="@item.idDivisao">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.idDivisao">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.idDivisao">Delete</a>
                 </td>
             </tr>
         }
     </tbody>
 </table>
+
+@for (int i = Model.FirstPageShow; i <= Model.LastPageShow; i++)
+{
+    @if (i == Model.CurrentPage)
+    {
+        <a href="#" class="btn btn-info">@i</a>
+    }
+    else
+    {
+        <a asp-action="Index" asp-route-page="@i"
+           class="btn btn-outline-info">@i</a>
+    }
+}
