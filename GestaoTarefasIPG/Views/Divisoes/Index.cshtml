@@ -7,13 +7,13 @@
 <h4>Divisões</h4>
 
 <p>
-    <a asp-action="Create">Criar Novo</a>
+    <a asp-action="Create"><input type="submit" value="Criar Novo" class="btn btn-danger" /></a>
 </p>
 <table class="table">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.NumDivisao)
+               Número da divisão
             </th>
             <th></th>
         </tr>
@@ -26,9 +26,9 @@
                     @Html.DisplayFor(modelItem => item.NumDivisao)
                 </td>
                 <td>
-                    <a asp-action="Edit" asp-route-id="@item.idDivisao">Editar</a> |
-                    <a asp-action="Details" asp-route-id="@item.idDivisao">Detalhes</a> |
-                    <a asp-action="Delete" asp-route-id="@item.idDivisao">Apagar</a>
+                    <a asp-action="Edit" asp-route-id="@item.idDivisao"><input type="submit" value="Editar" class="btn btn-danger" /></a> |
+                    <a asp-action="Details" asp-route-id="@item.idDivisao"><input type="submit" value="Detalhes" class="btn btn-danger" /></a> |
+                    <a asp-action="Delete" asp-route-id="@item.idDivisao"><input type="submit" value="Apagar" class="btn btn-danger" /></a>
                 </td>
             </tr>
         }
