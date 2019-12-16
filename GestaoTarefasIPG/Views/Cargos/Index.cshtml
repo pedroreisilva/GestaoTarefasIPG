@@ -6,9 +6,11 @@
 
 <h4>Cargos</h4>
 
+<br />
 <p>
-    <a asp-action="Create">Criar Novo</a>
+    <a class="btn btn-danger" asp-action="Create">Criar Novo</a>
 </p>
+
 <table class="table">
     <thead>
         <tr>
@@ -26,9 +28,9 @@
                     @Html.DisplayFor(modelItem => item.NomeCargo)
                 </td>
                 <td>
-                    <a asp-action="Edit" asp-route-id="@item.idCargo">Editar</a> |
-                    <a asp-action="Details" asp-route-id="@item.idCargo">Detalhes</a> |
-                    <a asp-action="Delete" asp-route-id="@item.idCargo">Apagar</a>
+                    <a class="btn btn-danger" asp-action="Edit" asp-route-id="@item.idCargo">Editar</a> |
+                    <a class="btn btn-danger" asp-action="Details" asp-route-id="@item.idCargo">Detalhes</a> |
+                    <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.idCargo">Apagar</a>
                 </td>
             </tr>
         }
