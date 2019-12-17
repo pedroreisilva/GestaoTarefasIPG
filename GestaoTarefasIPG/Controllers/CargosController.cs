@@ -11,6 +11,11 @@ namespace GestaoTarefasIPG.Controllers
 {
     public class CargosController : Controller
     {
+
+        private int NUMBER_PAGES_BEFORE_AND_AFTER = 2;
+        private decimal NUMBER_CARGO_PER_PAGE = 2;
+        private int CARGOS_PER_PAGE = 2;
+
         private readonly GestaoTarefasIPGContext _context;
 
         public CargosController(GestaoTarefasIPGContext context)
@@ -19,9 +24,21 @@ namespace GestaoTarefasIPG.Controllers
         }
 
         // GET: Cargos
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(int page = 1)
         {
-            return View(await _context.Cargos.ToListAsync());
+            decimal numberDivisoes = _context.Divisoes.Count();
+            PaginationViewModel vm = new PaginationViewModel
+            {
+
+
+                Cargos = _context.Cargos.OrderBy(p => p.NomeCargo).Skip((page - 1) * CARGOS_PER_PAGE).Take(CARGOS_PER_PAGE),
+                CurrentPage = page,
+                FirstPageShow = Math.Max(1, page - NUMBER_PAGES_BEFORE_AND_AFTER),
+                TotalPages = (int)Math.Ceiling(numberDivisoes / NUMBER_CARGO_PER_PAGE)
+            };
+            vm.LastPageShow = Math.Min(vm.TotalPages, page + NUMBER_PAGES_BEFORE_AND_AFTER);
+
+            return View(vm);
         }
 
         // GET: Cargos/Details/5

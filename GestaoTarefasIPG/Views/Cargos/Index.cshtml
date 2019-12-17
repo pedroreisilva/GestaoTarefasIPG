@@ -1,4 +1,4 @@
-﻿@model IEnumerable<GestaoTarefasIPG.Models.Cargos>
+﻿@model GestaoTarefasIPG.Models.PaginationViewModel;
 
 @{
     ViewData["Title"] = "Index";
@@ -15,13 +15,13 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.NomeCargo)
+                Nome do cargo
             </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
-        @foreach (var item in Model)
+        @foreach (var item in Model.Cargos)
         {
             <tr>
                 <td>
@@ -36,3 +36,17 @@
         }
     </tbody>
 </table>
+
+
+    @for (int i = Model.FirstPageShow; i <= Model.LastPageShow; i++)
+    {
+        @if (i == Model.CurrentPage)
+        {
+            <a href="#" class="btn btn-info">@i</a>
+        }
+        else
+        {
+            <a asp-action="Index" asp-route-page="@i"
+               class="btn btn-outline-info">@i</a>
+        }
+    } 
