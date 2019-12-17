@@ -11,6 +11,11 @@ namespace GestaoTarefasIPG.Controllers
 {
     public class DepartamentosController : Controller
     {
+
+        private int NUMBER_PAGES_BEFORE_AND_AFTER = 2;
+        private decimal NUMBER_FUNC_PER_PAGE = 2;
+        private int FUNC_PER_PAGE = 2;
+
         private readonly GestaoTarefasIPGContext _context;
 
         public DepartamentosController(GestaoTarefasIPGContext context)
@@ -19,9 +24,21 @@ namespace GestaoTarefasIPG.Controllers
         }
 
         // GET: Departamentos
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(int page = 1)
         {
-            return View(await _context.Departamentos.ToListAsync());
+            decimal numberDepartamentos = _context.Departamentos.Count();
+            PaginationViewModel vm = new PaginationViewModel
+            {
+
+
+                Departamentos = _context.Departamentos.OrderBy(p => p.NomeDepartamento).Skip((page - 1) * FUNC_PER_PAGE).Take(FUNC_PER_PAGE),
+                CurrentPage = page,
+                FirstPageShow = Math.Max(1, page - NUMBER_PAGES_BEFORE_AND_AFTER),
+                TotalPages = (int)Math.Ceiling(numberDepartamentos / NUMBER_FUNC_PER_PAGE)
+            };
+            vm.LastPageShow = Math.Min(vm.TotalPages, page + NUMBER_PAGES_BEFORE_AND_AFTER);
+
+            return View(vm);
         }
 
         // GET: Departamentos/Details/5
