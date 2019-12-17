@@ -27,7 +27,7 @@
     --primary: #E60C2E;
     --secondary: #2c3e50;
     --success: #28a745;
-    --info: #17a2b8;
+    --info: red;
     --warning: #ffc107;
     --danger: #dc3545;
     --light: #f8f9fa;
@@ -2358,14 +2358,14 @@ fieldset:disabled a.btn {
 
 .btn-info {
   color: #fff;
-  background-color: #17a2b8;
-  border-color: #17a2b8;
+  background-color: red;
+  border-color: red;
 }
 
 .btn-info:hover {
   color: #fff;
-  background-color: #138496;
-  border-color: #117a8b;
+  background-color: red;
+  border-color: red;
 }
 
 .btn-info:focus, .btn-info.focus {
@@ -2374,8 +2374,8 @@ fieldset:disabled a.btn {
 
 .btn-info.disabled, .btn-info:disabled {
   color: #fff;
-  background-color: #17a2b8;
-  border-color: #17a2b8;
+  background-color: red;
+  border-color: red;
 }
 
 .btn-info:not(:disabled):not(.disabled):active, .btn-info:not(:disabled):not(.disabled).active,
@@ -2638,15 +2638,15 @@ fieldset:disabled a.btn {
 }
 
 .btn-outline-info.disabled, .btn-outline-info:disabled {
-  color: #17a2b8;
+  color: red;
   background-color: transparent;
 }
 
 .btn-outline-info:not(:disabled):not(.disabled):active, .btn-outline-info:not(:disabled):not(.disabled).active,
 .show > .btn-outline-info.dropdown-toggle {
   color: #fff;
-  background-color: #17a2b8;
-  border-color: #17a2b8;
+  background-color: red;
+  border-color: red;
 }
 
 .btn-outline-info:not(:disabled):not(.disabled):active:focus, .btn-outline-info:not(:disabled):not(.disabled).active:focus,
@@ -4758,7 +4758,7 @@ a.badge-success:focus, a.badge-success.focus {
 
 .badge-info {
   color: #fff;
-  background-color: #17a2b8;
+  background-color: red;
 }
 
 a.badge-info:hover, a.badge-info:focus {
@@ -6205,13 +6205,13 @@ a.close.disabled {
 }
 
 .bg-primary {
-    background-color: white !important;
+    background-color: darkred !important;
 }
 
 a.bg-primary:hover, a.bg-primary:focus,
 button.bg-primary:hover,
 button.bg-primary:focus {
-  background-color: #148f77 !important;
+  background-color: darkred !important;
 }
 
 .bg-secondary {
@@ -6235,7 +6235,7 @@ button.bg-success:focus {
 }
 
 .bg-info {
-  background-color: #17a2b8 !important;
+  background-color: red !important;
 }
 
 a.bg-info:hover, a.bg-info:focus,
@@ -6345,7 +6345,7 @@ button.bg-dark:focus {
 }
 
 .border-info {
-  border-color: #17a2b8 !important;
+  border-color: red !important;
 }
 
 .border-warning {
@@ -9392,7 +9392,7 @@ a.text-success:hover, a.text-success:focus {
 }
 
 .text-info {
-  color: #17a2b8 !important;
+  color: red !important;
 }
 
 a.text-info:hover, a.text-info:focus {
