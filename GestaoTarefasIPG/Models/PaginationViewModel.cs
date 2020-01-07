@@ -12,12 +12,13 @@ namespace GestaoTarefasIPG.Models
 
         public IEnumerable<Divisoes> Divisoes { get; set; }
         public IEnumerable<Cargos> Cargos { get; set; }
+        public IEnumerable<Departamentos> Departamentos { get; set; }
+
 
         public int CurrentPage { get; set; }
         public int TotalPages { get; set; }
         public int FirstPageShow { get; set; }
         public int LastPageShow { get; set; }
-        public IQueryable<Departamentos> Departamentos { get; internal set; }
     }
 }
 
