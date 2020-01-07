@@ -27,9 +27,9 @@
                     @Html.DisplayFor(modelItem => item.NumDivisao)
                 </td>
                 <td>
-                    <a asp-action="Edit" asp-route-id="@item.idDivisao">Edit</a> |
-                    <a asp-action="Details" asp-route-id="@item.idDivisao">Details</a> |
-                    <a asp-action="Delete" asp-route-id="@item.idDivisao">Delete</a>
+                    <a asp-action="Edit" asp-route-id="@item.idDivisao"><input type="submit" value="Editar" class="btn btn-danger" /></a> |
+                    <a asp-action="Details" asp-route-id="@item.idDivisao"><input type="submit" value="Detalhes" class="btn btn-danger" /></a> |
+                    <a asp-action="Delete" asp-route-id="@item.idDivisao"><input type="submit" value="Apagar" class="btn btn-danger" /></a>
                 </td>
             </tr>
         }
