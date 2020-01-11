@@ -12,6 +12,16 @@
     <a asp-action="Create"><input type="submit" value="Criar Novo" class="btn btn-danger" /></a>
 </p>
 </p>
+<form asp-action="Index" method="get">
+    <div class="form-actions no-color">
+        <p>
+            Procurar por nome: <input type="text" name="SearchString" value="@ViewData["currentFilter"]" />
+            <input type="submit" value="Procurar" class="btn btn-default" />
+        </p>
+    </div>
+</form>
+
+
 <table class="table">
     <thead>
         <tr>

@@ -12,9 +12,9 @@ namespace GestaoTarefasIPG.Controllers
     public class DepartamentosController : Controller
     {
 
-        private int NUMBER_PAGES_BEFORE_AND_AFTER = 2;
-        private decimal NUMBER_FUNC_PER_PAGE = 2;
-        private int FUNC_PER_PAGE = 2;
+        private int NUMBER_PAGES_BEFORE_AND_AFTER = 8;
+        private decimal NUMBER_FUNC_PER_PAGE = 8;
+        private int FUNC_PER_PAGE = 8;
 
         private readonly GestaoTarefasIPGContext _context;
 
