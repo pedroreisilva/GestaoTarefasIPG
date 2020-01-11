@@ -23,7 +23,11 @@ namespace GestaoTarefasIPG.Models
                 new Cargos { NomeCargo = "Professor" }, 
                 new Cargos { NomeCargo = "Funcionario" },
                 new Cargos { NomeCargo = "Secretária" },
-                new Cargos { NomeCargo = "Auxiliar" }
+                new Cargos { NomeCargo = "Auxiliar" },
+                new Cargos { NomeCargo = "Gestor" },
+                new Cargos { NomeCargo = "Presidente" },
+                new Cargos { NomeCargo = "Vice presidente" },
+                new Cargos { NomeCargo = "" }
 
                 );
             db.SaveChanges();
@@ -61,7 +65,13 @@ namespace GestaoTarefasIPG.Models
                 new Departamentos { NomeDepartamento = "Informática" },
                 new Departamentos { NomeDepartamento = "Contabilidade" },
                 new Departamentos { NomeDepartamento = "Civil" },
-                new Departamentos { NomeDepartamento = "Marketing" }
+                new Departamentos { NomeDepartamento = "Marketing" },
+                new Departamentos { NomeDepartamento = "Gestão de recursos humanos" },
+                new Departamentos { NomeDepartamento = "Arrumos" },
+                new Departamentos { NomeDepartamento = "Bar" },
+                new Departamentos { NomeDepartamento = "Comunicações e relações publicas" },
+                new Departamentos { NomeDepartamento = "Gabinetes" }
+
 
                 );
             db.SaveChanges();
