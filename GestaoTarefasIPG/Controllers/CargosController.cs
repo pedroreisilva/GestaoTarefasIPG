@@ -12,9 +12,9 @@ namespace GestaoTarefasIPG.Controllers
     public class CargosController : Controller
     {
 
-        private int NUMBER_PAGES_BEFORE_AND_AFTER = 2;
-        private decimal NUMBER_CARGO_PER_PAGE = 2;
-        private int CARGOS_PER_PAGE = 2;
+        private int NUMBER_PAGES_BEFORE_AND_AFTER = 8;
+        private int NUMBER_CARGO_PER_PAGE = 8;
+        private int CARGOS_PER_PAGE = 8;
 
         private readonly GestaoTarefasIPGContext _context;
 
@@ -24,19 +24,47 @@ namespace GestaoTarefasIPG.Controllers
         }
 
         // GET: Cargos
-        public async Task<IActionResult> Index(int page = 1)
+        public async Task<IActionResult> Index(int page = 1, string searchString = "", string sort = "true", string procurar = "Nome")
         {
-            decimal numberDivisoes = _context.Divisoes.Count();
+
+
+            var cargos = from p in _context.Cargos
+                                select p;
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                cargos = cargos.Where(p => p.NomeCargo.Contains(searchString));
+                if (procurar.Equals("Nome"))
+                {
+                    cargos = cargos.Where(p => p.NomeCargo.Contains(searchString));
+                }
+            }
+
+            decimal numberCargos = _context.Cargos.Count();
             PaginationViewModel vm = new PaginationViewModel
             {
 
 
+                Sort = sort,
                 Cargos = _context.Cargos.OrderBy(p => p.NomeCargo).Skip((page - 1) * CARGOS_PER_PAGE).Take(CARGOS_PER_PAGE),
                 CurrentPage = page,
                 FirstPageShow = Math.Max(1, page - NUMBER_PAGES_BEFORE_AND_AFTER),
-                TotalPages = (int)Math.Ceiling(numberDivisoes / NUMBER_CARGO_PER_PAGE)
+                TotalPages = (int)Math.Ceiling(numberCargos / NUMBER_CARGO_PER_PAGE),
+                Procurar = procurar
             };
+            if (sort.Equals("true"))
+            {
+                vm.Cargos = cargos.OrderBy(p => p.NomeCargo).Skip((page - 1) * NUMBER_CARGO_PER_PAGE).Take(NUMBER_CARGO_PER_PAGE);
+            }
+            else
+            {
+                vm.Cargos = cargos.OrderByDescending(p => p.NomeCargo).Skip((page - 1) * NUMBER_CARGO_PER_PAGE).Take(NUMBER_CARGO_PER_PAGE);
+            }
+
+
             vm.LastPageShow = Math.Min(vm.TotalPages, page + NUMBER_PAGES_BEFORE_AND_AFTER);
+            vm.StringProcurar = searchString;
+
 
             return View(vm);
         }
