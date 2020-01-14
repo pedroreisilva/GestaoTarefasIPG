@@ -33,6 +33,11 @@
             <tr>
                 <td>
                     @Html.DisplayFor(modelItem => item.NumDivisao)
+
+                   
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Estado)
                 </td>
                 <td>
                     <a asp-action="Edit" asp-route-id="@item.idDivisao"><input type="submit" value="Editar" class="btn btn-danger" /></a> |
