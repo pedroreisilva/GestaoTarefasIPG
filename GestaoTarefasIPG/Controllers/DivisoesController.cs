@@ -11,9 +11,9 @@ namespace GestaoTarefasIPG.Controllers
 {
     public class DivisoesController : Controller
     {
-        private int NUMBER_PAGES_BEFORE_AND_AFTER = 2;
-        private decimal NUMBER_FUNC_PER_PAGE = 2;
-        private int FUNC_PER_PAGE = 2;
+        private int NUMBER_PAGES_BEFORE_AND_AFTER = 8;
+        private int NUMBER_FUNC_PER_PAGE = 8;
+        private int FUNC_PER_PAGE = 8;
 
         private readonly GestaoTarefasIPGContext _context;
 
@@ -23,21 +23,64 @@ namespace GestaoTarefasIPG.Controllers
         }
 
         // GET: Divisoe
-        public async Task<IActionResult> Index(int page =1)
+        public async Task<IActionResult> Index(int page = 1, string searchString = "", string sort = "true", string procurar = "Nome")
         {
+
+            var Divisoes = from p in _context.Divisoes
+                                select p;
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                Divisoes = Divisoes.Where(p => p.NumDivisao.Contains(searchString));
+                if (procurar.Equals("Nome"))
+                {
+                    Divisoes = Divisoes.Where(p => p.NumDivisao.Contains(searchString));
+                }
+            }
+
+
+
+
+
+
             decimal numberDivisoes = _context.Divisoes.Count();
             PaginationViewModel vm = new PaginationViewModel{
 
-
+                Sort = sort,
                 Divisoes = _context.Divisoes.OrderBy(p => p.NumDivisao).Skip((page - 1)* FUNC_PER_PAGE).Take(FUNC_PER_PAGE),
                 CurrentPage = page,
                 FirstPageShow = Math.Max(1,page - NUMBER_PAGES_BEFORE_AND_AFTER),
-                TotalPages = (int)Math.Ceiling(numberDivisoes / NUMBER_FUNC_PER_PAGE)
+                TotalPages = (int)Math.Ceiling(numberDivisoes / NUMBER_FUNC_PER_PAGE),
+                Procurar = procurar
+
             };
+
+
+            if (sort.Equals("true"))
+            {
+                vm.Divisoes = Divisoes.OrderBy(p => p.NumDivisao).Skip((page - 1) * NUMBER_FUNC_PER_PAGE).Take(NUMBER_FUNC_PER_PAGE);
+            }
+            else
+            {
+                vm.Divisoes = Divisoes.OrderByDescending(p => p.NumDivisao).Skip((page - 1) * NUMBER_FUNC_PER_PAGE).Take(NUMBER_FUNC_PER_PAGE);
+            }
+
+
+
+
+
+
+
+
+
+
             vm.LastPageShow = Math.Min(vm.TotalPages, page + NUMBER_PAGES_BEFORE_AND_AFTER);
+            vm.StringProcurar = searchString;
 
             return View(vm);
         }
+
+
 
 
 
