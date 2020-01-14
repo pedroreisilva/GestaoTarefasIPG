@@ -13,7 +13,7 @@ namespace GestaoTarefasIPG.Controllers
     {
 
         private int NUMBER_PAGES_BEFORE_AND_AFTER = 8;
-        private decimal NUMBER_FUNC_PER_PAGE = 8;
+        private int NUMBER_FUNC_PER_PAGE = 8;
         private int FUNC_PER_PAGE = 8;
 
         private readonly GestaoTarefasIPGContext _context;
@@ -24,19 +24,45 @@ namespace GestaoTarefasIPG.Controllers
         }
 
         // GET: Departamentos
-        public async Task<IActionResult> Index(int page = 1)
+        public async Task<IActionResult> Index(int page = 1, string searchString = "", string sort = "true", string procurar = "Nome")
         {
+
+
+            var departamentos = from p in _context.Departamentos
+            select p;
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                departamentos = departamentos.Where(p => p.NomeDepartamento.Contains(searchString));
+                if (procurar.Equals("Nome"))
+                {
+                    departamentos = departamentos.Where(p => p.NomeDepartamento.Contains(searchString));
+                }
+            }
+
             decimal numberDepartamentos = _context.Departamentos.Count();
             PaginationViewModel vm = new PaginationViewModel
             {
-
-
+                Sort = sort,
                 Departamentos = _context.Departamentos.OrderBy(p => p.NomeDepartamento).Skip((page - 1) * FUNC_PER_PAGE).Take(FUNC_PER_PAGE),
                 CurrentPage = page,
                 FirstPageShow = Math.Max(1, page - NUMBER_PAGES_BEFORE_AND_AFTER),
-                TotalPages = (int)Math.Ceiling(numberDepartamentos / NUMBER_FUNC_PER_PAGE)
+                TotalPages = (int)Math.Ceiling(numberDepartamentos / NUMBER_FUNC_PER_PAGE),
+                Procurar = procurar
             };
+            if (sort.Equals("true"))
+            {
+                vm.Departamentos = departamentos.OrderBy(p => p.NomeDepartamento).Skip((page - 1) * NUMBER_FUNC_PER_PAGE).Take(NUMBER_FUNC_PER_PAGE);
+            }
+            else
+            {
+                vm.Departamentos = departamentos.OrderByDescending(p => p.NomeDepartamento).Skip((page - 1) * NUMBER_FUNC_PER_PAGE).Take(NUMBER_FUNC_PER_PAGE);
+            }
+
+
             vm.LastPageShow = Math.Min(vm.TotalPages, page + NUMBER_PAGES_BEFORE_AND_AFTER);
+            vm.StringProcurar = searchString;
+
 
             return View(vm);
         }
