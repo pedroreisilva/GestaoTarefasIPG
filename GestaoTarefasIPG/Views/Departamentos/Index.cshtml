@@ -16,18 +16,20 @@
     <div class="form-actions no-color">
         <p>
             Procurar por nome: <input type="text" name="SearchString" value="@ViewData["currentFilter"]" />
-            <input type="submit" value="Procurar" class="btn btn-danger" />
+            <input type="submit" value="Procurar" class="btn btn-danger" /> |
+            <a asp-action="Index" class="btn btn-outline-info">Voltar à lista</a>
         </p>
     </div>
 </form>
-
+<br />
+<br />
 
 <table class="table">
     <thead>
         <tr>
 
             <th>
-                Nome do departamento
+                Nome do departamento:
             </th>
 
             <th></th>
@@ -48,6 +50,7 @@
             </tr>
         }
     </tbody>
+    
 </table>
 
 @for (int i = Model.FirstPageShow; i <= Model.LastPageShow; i++){

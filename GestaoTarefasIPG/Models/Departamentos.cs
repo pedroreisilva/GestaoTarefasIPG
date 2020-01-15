@@ -13,7 +13,8 @@ namespace GestaoTarefasIPG.Models
         [Key]
         public int idDepartamento { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Introduza um departamento válido!")]
+        [StringLength(30)]
         public String NomeDepartamento { get; set; }
 
     }
