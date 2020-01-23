@@ -42,16 +42,16 @@ namespace GestaoTarefasIPG.Models
                 return;
             }
             db.Divisoes.AddRange(
-                new Divisoes { NumDivisao = "42" , Estado ="Ocupado" },
-                new Divisoes { NumDivisao = "43", Estado = "Livre" },
-                new Divisoes { NumDivisao = "44", Estado = "Ocupado" },
-                new Divisoes { NumDivisao = "45", Estado = "Livre" },
-                new Divisoes { NumDivisao = "49", Estado = "Ocupado" },
-                new Divisoes { NumDivisao = "40", Estado = "Ocupado" },
-                new Divisoes { NumDivisao = "38", Estado = "Livre" },
-                new Divisoes { NumDivisao = "39", Estado = "Ocupado" },
-                new Divisoes { NumDivisao = "35", Estado = "Livre" },
-                new Divisoes { NumDivisao = "36", Estado = "Ocupado" }
+                new Divisoes { NumDivisao = "42"  },
+                new Divisoes { NumDivisao = "43" },
+                new Divisoes { NumDivisao = "44" },
+                new Divisoes { NumDivisao = "45" },
+                new Divisoes { NumDivisao = "49" },
+                new Divisoes { NumDivisao = "40" },
+                new Divisoes { NumDivisao = "38"},
+                new Divisoes { NumDivisao = "39" },
+                new Divisoes { NumDivisao = "35" },
+                new Divisoes { NumDivisao = "36",  }
                 );
             db.SaveChanges();
 

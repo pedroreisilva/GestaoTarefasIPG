@@ -16,7 +16,5 @@ namespace GestaoTarefasIPG.Models
         [Required]
         public String NumDivisao { get; set; }
 
-        [Required]
-        public String Estado { get; set; }
     }
 }
