@@ -123,7 +123,8 @@ namespace GestaoTarefasIPG.Controllers
             {
                 _context.Add(divisoes);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                //return RedirectToAction(nameof(Index));
+                return View("Sucesso");
             }
             return View(divisoes);
         }
@@ -174,7 +175,8 @@ namespace GestaoTarefasIPG.Controllers
                         throw;
                     }
                 }
-                return RedirectToAction(nameof(Index));
+                //return RedirectToAction(nameof(Index));
+                return View("Sucesso");
             }
             return View(divisoes);
         }
@@ -205,7 +207,9 @@ namespace GestaoTarefasIPG.Controllers
             var divisoes = await _context.Divisoes.FindAsync(id);
             _context.Divisoes.Remove(divisoes);
             await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            //return RedirectToAction(nameof(Index));
+            return View("Sucesso");
+
         }
 
         private bool DivisoesExists(int id)
