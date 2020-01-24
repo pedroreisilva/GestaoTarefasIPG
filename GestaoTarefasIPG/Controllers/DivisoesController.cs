@@ -26,7 +26,7 @@ namespace GestaoTarefasIPG.Controllers
         public async Task<IActionResult> Index(int page =1)
         {
             decimal numberDivisoes = _context.Divisoes.Count();
-            PaginationViewModel vm = new PaginationViewModel{
+            DivisoesViewModel vm = new DivisoesViewModel{
 
 
                 Divisoes = _context.Divisoes.OrderBy(p => p.NumDivisao).Skip((page - 1)* FUNC_PER_PAGE).Take(FUNC_PER_PAGE),

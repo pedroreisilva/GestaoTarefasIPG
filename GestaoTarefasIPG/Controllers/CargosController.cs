@@ -41,7 +41,7 @@ namespace GestaoTarefasIPG.Controllers
             }
 
             decimal numberCargos = _context.Cargos.Count();
-            PaginationViewModel vm = new PaginationViewModel
+            CargosViewModel vm = new CargosViewModel
             {
 
 
