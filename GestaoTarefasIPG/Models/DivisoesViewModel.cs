@@ -5,15 +5,10 @@ using System.Threading.Tasks;
 
 namespace GestaoTarefasIPG.Models
 {
-    public class PaginationViewModel
+    public class DivisoesViewModel
     {
 
-
-
         public IEnumerable<Divisoes> Divisoes { get; set; }
-        public IEnumerable<Cargos> Cargos { get; set; }
-        public IEnumerable<Departamentos> Departamentos { get; set; }
-
 
         public int CurrentPage { get; set; }
         public int TotalPages { get; set; }
@@ -25,4 +20,3 @@ namespace GestaoTarefasIPG.Models
         public string Sort { get; set; }
     }
 }
-

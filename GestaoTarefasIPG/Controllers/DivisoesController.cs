@@ -44,7 +44,7 @@ namespace GestaoTarefasIPG.Controllers
 
 
             decimal numberDivisoes = _context.Divisoes.Count();
-            PaginationViewModel vm = new PaginationViewModel{
+            DivisoesViewModel vm = new DivisoesViewModel{
 
                 Sort = sort,
                 Divisoes = _context.Divisoes.OrderBy(p => p.NumDivisao).Skip((page - 1)* FUNC_PER_PAGE).Take(FUNC_PER_PAGE),

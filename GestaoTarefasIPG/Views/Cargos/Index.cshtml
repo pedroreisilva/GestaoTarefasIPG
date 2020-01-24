@@ -1,32 +1,35 @@
-﻿@model GestaoTarefasIPG.Models.PaginationViewModel;
+﻿@model GestaoTarefasIPG.Models.CargosViewModel;
 
 @{
     ViewData["Title"] = "Index";
 }
 
 <h4>Cargos</h4>
-
 <br />
 <p>
-    <a class="btn btn-danger" asp-action="Create">Criar Novo</a>
+
+<p>
+    <a asp-action="Create"><input type="submit" value="Criar Novo" class="btn btn-danger" /></a>
 </p>
+
+<form asp-action="Index" method="get">
+    <div class="form-actions no-color">
+        <p>
+            Procurar por nome: <input type="text" name="SearchString" value="@ViewData["currentFilter"]" />
+            <input type="submit" value="Procurar" class="btn btn-danger" />
+        </p>
+    </div>
+</form>
+
 
 <table class="table">
     <thead>
-        <form asp-action="Index" method="get">
-            <div class="form-actions no-color">
-                <p style="color:black">
-                    Procura por nome:&nbsp;  <input type="text" name="SearchString" value="@ViewData["currentFilter"]" />
-                    &nbsp;
-                    <input type="submit" value="Procurar" class="btn btn-danger" /> |
-                    <a asp-action="Index" class="btn btn-outline-info">Voltar atrás</a>
-                </p>
-            </div>
-        </form>
         <tr>
+
             <th>
-                Nome do cargo
+                Nome do Cargo
             </th>
+
             <th></th>
         </tr>
     </thead>
@@ -38,25 +41,27 @@
                     @Html.DisplayFor(modelItem => item.NomeCargo)
                 </td>
                 <td>
-                    <a class="btn btn-danger" asp-action="Edit" asp-route-id="@item.idCargo">Editar</a> |
-                    <a class="btn btn-danger" asp-action="Details" asp-route-id="@item.idCargo">Detalhes</a> |
-                    <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.idCargo">Apagar</a>
+                    <a asp-action="Edit" asp-route-id="@item.idCargo"><input type="submit" value="Editar" class="btn btn-danger" /></a> |
+                    <a asp-action="Details" asp-route-id="@item.idCargo"><input type="submit" value="Detalhes" class="btn btn-danger" /></a> |
+                    <a asp-action="Delete" asp-route-id="@item.idCargo"><input type="submit" value="Apagar" class="btn btn-danger" /></a>
                 </td>
             </tr>
         }
     </tbody>
 </table>
 
-
-    @for (int i = Model.FirstPageShow; i <= Model.LastPageShow; i++)
+@for (int i = Model.FirstPageShow; i <= Model.LastPageShow; i++)
+{
+    @if (i == Model.CurrentPage)
     {
-        @if (i == Model.CurrentPage)
-        {
-            <a href="#" class="btn btn-info">@i</a>
-        }
-        else
-        {
-            <a asp-action="Index" asp-route-page="@i"
-               class="btn btn-outline-info">@i</a>
-        }
-    } 
+        <a href="#" class="btn btn-info">@i</a>
+    }
+    else
+    {
+        <a asp-action="Index" asp-route-page="@i"
+           class="btn btn-outline-info">@i</a>
+    }
+}
+<br />
+<br />
+<br />

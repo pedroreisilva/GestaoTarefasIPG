@@ -41,8 +41,7 @@ namespace GestaoTarefasIPG.Controllers
             }
 
             decimal numberDepartamentos = _context.Departamentos.Count();
-            PaginationViewModel vm = new PaginationViewModel
-            {
+            DepartamentosViewModel vm = new DepartamentosViewModel{
                 Sort = sort,
                 Departamentos = _context.Departamentos.OrderBy(p => p.NomeDepartamento).Skip((page - 1) * FUNC_PER_PAGE).Take(FUNC_PER_PAGE),
                 CurrentPage = page,
