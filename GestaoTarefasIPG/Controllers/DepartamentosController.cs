@@ -101,7 +101,8 @@ namespace GestaoTarefasIPG.Controllers
             {
                 _context.Add(departamentos);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                //return RedirectToAction(nameof(Index));
+                return View("Sucesso");
             }
             return View(departamentos);
         }
@@ -152,7 +153,8 @@ namespace GestaoTarefasIPG.Controllers
                         throw;
                     }
                 }
-                return RedirectToAction(nameof(Index));
+                //return RedirectToAction(nameof(Index));
+                return View("Sucesso");
             }
             return View(departamentos);
         }
@@ -183,7 +185,8 @@ namespace GestaoTarefasIPG.Controllers
             var departamentos = await _context.Departamentos.FindAsync(id);
             _context.Departamentos.Remove(departamentos);
             await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            //return RedirectToAction(nameof(Index));
+            return View("Sucesso");
         }
 
         private bool DepartamentosExists(int id)

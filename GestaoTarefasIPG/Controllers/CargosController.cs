@@ -104,7 +104,9 @@ namespace GestaoTarefasIPG.Controllers
             {
                 _context.Add(cargos);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                //return RedirectToAction(nameof(Index));
+                return View("Sucesso");
+
             }
             return View(cargos);
         }
@@ -155,7 +157,9 @@ namespace GestaoTarefasIPG.Controllers
                         throw;
                     }
                 }
-                return RedirectToAction(nameof(Index));
+                //return RedirectToAction(nameof(Index));
+                return View("Sucesso");
+
             }
             return View(cargos);
         }
@@ -186,7 +190,9 @@ namespace GestaoTarefasIPG.Controllers
             var cargos = await _context.Cargos.FindAsync(id);
             _context.Cargos.Remove(cargos);
             await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            //return RedirectToAction(nameof(Index));
+            return View("Sucesso");
+
         }
 
         private bool CargosExists(int id)
